@@ -9,9 +9,6 @@
 		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
 	},
 	"dependencies": {
-		"@nextui-org/system": "^2.0.0",
-		"@nextui-org/theme": "^2.2.8",
-		"@nextui-org/navbar": "^2.0.0",
 		"@nextui-org/button": "2.0.35",
 		"@nextui-org/code": "2.0.30",
 		"@nextui-org/input": "2.2.3",
@@ -38,7 +35,7 @@
 		"@types/react-dom": "18.3.0",
 		"@typescript-eslint/eslint-plugin": "7.2.0",
 		"@typescript-eslint/parser": "7.2.0",
-		"autoprefixer": "10.4.19",
+		"autoprefixer": "^10.4.19",
 		"eslint": "^8.57.0",
 		"eslint-config-prettier": "^8.2.0",
 		"eslint-plugin-import": "^2.26.0",

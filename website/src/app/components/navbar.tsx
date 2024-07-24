@@ -9,15 +9,18 @@ export default function App() {
       <NavbarBrand>
         
         {/* Füge hier ein Bild ein für das Seiten Logo */}
-        <div className="ml-4">
-          <Image
-            src="/OhneTitel2.svg" // Ersetze dies durch den Pfad zu deinem Bild
-            alt="Logo"
-            className="dark:invert"
-            width={50} // Setze die gewünschte Breite
-            height={50} // Setze die gewünschte Höhe
-          />
-        </div>
+        <a href="#">
+  <div className="ml-4">
+    <Image
+      src="/OhneTitel2.svg" // Path to your logo image
+      alt="Logo"
+      className="dark:invert"
+      width={50}
+      height={50}
+      
+    />
+  </div>
+</a>
         <p className="font-bold text-inherit">LiosCodeX</p>
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="center">

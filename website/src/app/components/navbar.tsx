@@ -9,7 +9,7 @@ export default function App() {
       <NavbarBrand>
         
         {/* Füge hier ein Bild ein für das Seiten Logo */}
-        <a href="#">
+        <a href="https://www.youtube.com/channel/UCJFOpXwLEKMrBi-YLYoQhtA">
   <div className="ml-4">
     <Image
       src="/OhneTitel2.svg" // Path to your logo image

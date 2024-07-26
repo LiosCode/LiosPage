@@ -3,7 +3,7 @@ import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button } from "@n
 // import { AcmeLogo } from "./AcmeLogo.jsx";
 import Image from "next/image";
 
-export default function App() {
+export default function NavbarComponent() {
   return (
     <Navbar>
       <NavbarBrand>

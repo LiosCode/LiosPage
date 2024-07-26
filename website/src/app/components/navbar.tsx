@@ -35,7 +35,7 @@ export default function App() {
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link color="foreground" href="https://liosclothinguniverse.myspreadshop.de/">
             FanShop
           </Link>
         </NavbarItem>

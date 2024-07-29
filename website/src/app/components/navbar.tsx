@@ -3,7 +3,7 @@ import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button } from "@n
 // import { AcmeLogo } from "./AcmeLogo.jsx";
 import Image from "next/image";
 
-export default function App() {
+export default function NavbarComponent() {
   return (
     <Navbar>
       <NavbarBrand>
@@ -35,7 +35,7 @@ export default function App() {
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link color="foreground" href="https://liosclothinguniverse.myspreadshop.de/">
             FanShop
           </Link>
         </NavbarItem>

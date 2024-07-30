@@ -1,6 +1,5 @@
 "use client";
 
-
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
@@ -9,11 +8,9 @@ import { FcGoogle } from "react-icons/fc";
 import Image from "next/image";
 import toast from "react-hot-toast";
 
-
-const NextLoginPage = () => {
+const NextLoginPage: React.FC = () => {
   const router = useRouter();
-  const [error, setError] = useState("");
-//   const session = useSession();
+  const [error, setError] = useState<string>("");
   const { data: session, status: sessionStatus } = useSession();
 
   useEffect(() => {
@@ -22,15 +19,16 @@ const NextLoginPage = () => {
     }
   }, [sessionStatus, router]);
 
-  const isValidEmail = (email: string) => {
+  const isValidEmail = (email: string): boolean => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     return emailRegex.test(email);
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const email = e.target[0].value;
-    const password = e.target[1].value;
+    const form = e.currentTarget;
+    const email = form.email.value;
+    const password = form.password.value;
 
     if (!isValidEmail(email)) {
       setError("Email is invalid");
@@ -39,49 +37,53 @@ const NextLoginPage = () => {
     }
 
     if (!password || password.length < 8) {
-      setError("Password is invalid");
-      toast.error("Password is invalid");
+      setError("Password must be at least 8 characters long");
+      toast.error("Password must be at least 8 characters long");
       return;
     }
 
-    const res = await signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-    });
+    try {
+      const res = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      });
 
-    if (res?.error) {
-      setError("Invalid email or password");
-      toast.error("Invalid email or password");
-      if (res?.url) router.replace("/dashboard");
-    } else {
-      setError("");
-      toast.success("Successful login");
+      if (res?.error) {
+        setError(res.error);
+        toast.error("Invalid email or password");
+      } else {
+        setError("");
+        toast.success("Successful login");
+        router.replace("/dashboard");
+      }
+    } catch (error) {
+      setError("An unexpected error occurred. Please try again.");
+      toast.error("An unexpected error occurred. Please try again.");
     }
   };
 
   if (sessionStatus === "loading") {
     return <h1>Loading...</h1>;
   }
+
   return (
     sessionStatus !== "authenticated" && (
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
-         <div className="flex justify-center">
-        <Link href="/">
-            <Image 
-              src="/OhneTitel2.svg" 
+        {/* <div className="flex justify-center">
+          <Link href="/">
+            <Image
+              src="/OhneTitel2.svg"
               alt="logo"
-               
-              className="dark:invert cursor-pointer" 
-              width={50} 
-              height={50} 
+              className="dark:invert cursor-pointer"
+              width={50}
+              height={50}
             />
-            
           </Link>
-          </div>
-          <h2 className="mt-6 text-center text-2xl leading-9 tracking-tight text-slate-700">
-            Sign in to your account
-          </h2>
+        </div> */}
+        <h2 className="mt-6 text-center text-2xl leading-9 tracking-tight text-slate-700">
+          Sign in to your account
+        </h2>
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
           <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
             <form className="space-y-6" onSubmit={handleSubmit}>
@@ -123,8 +125,6 @@ const NextLoginPage = () => {
                 </div>
               </div>
 
-              
-
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <input
@@ -142,10 +142,7 @@ const NextLoginPage = () => {
                 </div>
 
                 <div className="text-sm leading-6">
-                  <Link
-                    href="#"
-                    className="text-black hover:text-gray-900"
-                  >
+                  <Link href="#" className="text-black hover:text-gray-900">
                     Forgot password?
                   </Link>
                 </div>
@@ -156,7 +153,7 @@ const NextLoginPage = () => {
                   type="submit"
                   className="flex w-full border border-black justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-white transition-colors hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
-                  Sign in
+                  Sign In
                 </button>
               </div>
             </form>
